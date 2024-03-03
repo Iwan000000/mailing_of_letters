@@ -1,0 +1,27 @@
+<div class="px-4 py-5 my-5 text-center">
+
+    <h1 class="display-5 fw-bold text-body-emphasis">Рассылка здесь</h1>
+    <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">Добро пожаловать в  динамичную и быстро растущую силу в сфере массовых услуг.
+            службы обмена сообщениями. Будучи молодой и динамичной компанией, мы гордимся тем, что произвели революцию в бизнесе.
+            связаться со своей аудиторией с помощью наших передовых почтовых услуг. Наша миссия проста, но эффективна:
+            предоставить нашим клиентам возможность продвигать свои продукты и услуги с беспрецедентной эффективностью..</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            {% if user.is_authenticated %}
+            {% if perms.mailing.change_mailing %}
+            <a class="btn btn-primary btn-lg px-4 gap-3" href="{% url 'mailing_list' %}" role="button">Все рассылки</a>
+            <a class="btn btn-primary btn-lg px-4 gap-3" href="{% url 'moderator_users' %}" role="button">Все пользователи</a>
+            {% else %}
+            <a class="btn btn-primary btn-lg px-4 gap-3" href="{% url 'mailing_list' %}" role="button">Mой
+                рассылки</a>
+            <a class="btn btn-primary btn-lg px-4 gap-3" href="{% url 'mailing_form' %}" role="button">Создать новое
+                почтовое отправление</a>
+            {% endif %}
+            {% else %}
+            <a class="btn btn-primary btn-lg px-4 gap-3" href="{% url 'login' %}" role="button">Авторизоваться</a>
+            <a class="btn btn-outline-secondary btn-lg px-4" href="{% url 'register' %}" role="button">Зарегистрироватьс</a>
+            {% endif %}
+
+        </div>
+    </div>
+</div>

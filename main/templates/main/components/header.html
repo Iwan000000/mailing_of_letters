@@ -1,0 +1,32 @@
+<div class="sticky-top bg-body-tertiary">
+    <div class="container">
+
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+
+
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="{% url 'index' %}" class="nav-link px-2 link-secondary">Дом</a></li>
+                <li><a href="{% url 'index' %}#about_us" class="nav-link px-2">О нас</a></li>
+                <li><a href="{% url 'article_list' %}" class="nav-link px-2">Статьи</a></li>
+                <li><a href="{% url 'index' %}#statistic" class="nav-link px-2">Статистика</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'mailing_list' %}" class="nav-link px-2">Рассылки</a></li>
+                {% endif %}
+                {% if perms.mailing.change_mailing %}
+                <li><a href="{% url 'moderator_users' %}" class="nav-link px-2">Пользователи</a></li>
+                {% endif %}
+
+            </ul>
+
+            <div class="col-md-3 text-end">
+                {% if user.is_authenticated %}
+                <a class="btn btn-primary px-4 gap-3" href="{% url 'user_update' %}" role="button">Обновить профиль</a>
+                <a class="btn btn-outline-secondary px-4" href="{% url 'logout' %}" role="button">Выйти</a>
+                {% else %}
+                <a class="btn btn-primary px-4 gap-3" href="{% url 'login' %}" role="button">Авторизоваться</a>
+                <a class="btn btn-outline-secondary px-4" href="{% url 'register' %}" role="button">Зарегистрироваться</a>
+                {% endif %}
+            </div>
+        </header>
+    </div>
+</div>
