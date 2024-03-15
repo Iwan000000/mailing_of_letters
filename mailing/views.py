@@ -61,10 +61,13 @@ class MailingCreateView(LoginRequiredMixin, CreateView):
         if self.request.method == 'POST':
             context_data['mailing_formset'] = mailing_formset(self.request.POST)
             context_data['client_formset'] = client_formset(self.request.POST)
+
         else:
             context_data['mailing_formset'] = mailing_formset()
             context_data['client_formset'] = client_formset()
+
         return context_data
+
 
 
 class MailingDetailView(LoginRequiredMixin, DetailView):

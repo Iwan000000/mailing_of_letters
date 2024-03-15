@@ -1,7 +1,10 @@
 from django.db import models
+
 from mailing.models import Mailing
 
 NULLABLE = {'blank': True, 'null': True}
+
+
 # Create your models here.
 
 

@@ -1,10 +1,11 @@
-from article.models import Article
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.core.cache import cache
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.contrib.auth.mixins import PermissionRequiredMixin
+
 from article.forms import ArticleForm
+from article.models import Article
 from config.settings import CACHE_ENABLED
-from django.core.cache import cache
 
 
 class ArticleCreateView(PermissionRequiredMixin, CreateView):

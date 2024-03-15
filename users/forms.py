@@ -1,9 +1,10 @@
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from django.contrib.auth.forms import AuthenticationForm as DjangoAuthenticationForm
 from django import forms
-from users.models import User
-from django.core.exceptions import ValidationError
 from django.contrib.auth import authenticate
+from django.contrib.auth.forms import AuthenticationForm as DjangoAuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.core.exceptions import ValidationError
+
+from users.models import User
 from users.utils import send_email_for_verify
 
 
@@ -26,6 +27,7 @@ class AuthenticationForm(DjangoAuthenticationForm):
     """
     Форма для аутентификации пользователя.
     """
+
     def clean(self):
         email = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')
@@ -40,7 +42,7 @@ class AuthenticationForm(DjangoAuthenticationForm):
                 raise self.get_invalid_login_error()
 
             else:
-                if not self.user_cache.email_verify: #checking verification
+                if not self.user_cache.email_verify:  # checking verification
                     send_email_for_verify(self.request, self.user_cache)
                     raise ValidationError(
                         'Электронная почта не подтверждена, проверьте свою электронную почту',
@@ -59,6 +61,7 @@ class UserForm(UserChangeForm):
     """
     Форма добавления информации о пользователе
     """
+
     class Meta:
         model = User
         fields = ('email', 'password', 'name', 'lastname', 'company', 'phone', 'birthday', 'country', 'avatar')

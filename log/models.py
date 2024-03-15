@@ -1,12 +1,14 @@
 from django.db import models
+
 from mailing.models import Mailing
 
 NULLABLE = {'blank': True, 'null': True}
+
+
 # Create your models here.
 
 
 class Log(models.Model):
-
     datatime = models.DateTimeField(verbose_name='Время')
     mailing = models.ForeignKey(Mailing, on_delete=models.CASCADE, verbose_name='Почтовый идентификатор')
     status = models.CharField(max_length=150, verbose_name='Статус')

@@ -1,24 +1,26 @@
-from django.shortcuts import render
-from django.views.generic import CreateView, UpdateView
-from users.models import User
-from django.urls import reverse_lazy, reverse
+import random
+
+from django.contrib.auth import login
+from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.tokens import default_token_generator as token_generator
 from django.contrib.auth.views import LoginView as BaseLoginView
 from django.contrib.auth.views import LogoutView as BaseLogoutView
-from users.forms import UserRegisterForm, UserForm, AuthenticationForm
-from users.utils import send_email_for_verify
-from django.shortcuts import redirect
-from django.views import View
-from django.contrib.auth.tokens import default_token_generator as token_generator
-from django.contrib.auth import login
 from django.core.exceptions import ValidationError
-from django.utils.http import urlsafe_base64_decode
 from django.core.mail import send_mail
+from django.shortcuts import redirect
+from django.shortcuts import render
+from django.urls import reverse_lazy, reverse
+from django.utils.http import urlsafe_base64_decode
+from django.views import View
+from django.views.generic import CreateView, UpdateView
+
 from config.settings import EMAIL_HOST_USER
 from mailing.models import Mailing
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.decorators import permission_required
-import random
 from mailing.utils import sorting_list_mailings
+from users.forms import UserRegisterForm, UserForm, AuthenticationForm
+from users.models import User
+from users.utils import send_email_for_verify
 
 
 class LoginView(BaseLoginView):

@@ -1,14 +1,15 @@
-from django.shortcuts import render
-from article.models import Article
-from users.models import User
-from mailing.models import Mailing
-from client.models import Client
 import random
+
+from django.shortcuts import render
+
+from article.models import Article
+from client.models import Client
+from mailing.models import Mailing
+from users.models import User
 
 
 # Create your views here.
 def index(request):
-
     articles = Article.objects.all()
     if len(articles) > 0:
         data = {

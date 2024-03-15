@@ -1,5 +1,7 @@
 from django.urls import path
-from mailing.views import MailingCreateView, MailingDetailView, MailingUpdateView, MailingDeleteView, MailingListView, mailing_go, mailing_finish, mailing_again, mailing_change_status
+
+from mailing.views import MailingCreateView, MailingDetailView, MailingUpdateView, MailingDeleteView, MailingListView, \
+    mailing_go, mailing_finish, mailing_again, mailing_change_status
 
 urlpatterns = [
     path('mailing_form/', MailingCreateView.as_view(), name='mailing_form'),

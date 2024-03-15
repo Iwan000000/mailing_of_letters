@@ -1,12 +1,14 @@
 import datetime
-import pytz
-from message.models import Message
-from client.models import Client
-from mailing.models import Mailing
-from log.models import Log
 from datetime import timedelta
+
+import pytz
 from django.core.mail import send_mail
+
+from client.models import Client
 from config.settings import EMAIL_HOST_USER
+from log.models import Log
+from mailing.models import Mailing
+from message.models import Message
 
 
 def check_status_mailing(mailing):
@@ -47,11 +49,13 @@ def mailing_execution(mailing):
                     from_email=EMAIL_HOST_USER,
                     recipient_list=[client.email]
                 )
-                answers.append(f'Почтовое отправление - {mailing.name}, Дата - {datetime.datetime.now()}, {client.email} - {answer}/n')
+                answers.append(
+                    f'Почтовое отправление - {mailing.name}, Дата - {datetime.datetime.now()}, {client.email} - {answer}/n')
                 success_attempt += 1
             except Exception:
                 print('Ошибка')
-                answers.append(f'Почтовое отправление - {mailing.name}, Дата - {datetime.datetime.now()}, {client.email} - Ошибка/n')
+                answers.append(
+                    f'Почтовое отправление - {mailing.name}, Дата - {datetime.datetime.now()}, {client.email} - Ошибка/n')
                 unsuccessful_attempt += 1
         add_history_of_mailing(mailing, answers, success_attempt, unsuccessful_attempt)
         if success_attempt > 0:

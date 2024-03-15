@@ -1,9 +1,12 @@
 from django.contrib import admin
-from users.models import User
-from mailing.models import Periodicity, Mailing
+
 from article.models import Article
-from message.models import Message
 from client.models import Client
+from mailing.models import Mailing
+from message.models import Message
+from users.models import User
+
+
 # Register your models here.
 
 
@@ -12,13 +15,10 @@ class UserAdmin(admin.ModelAdmin):
     list_display = ('pk', 'name', 'email', 'is_manager')
 
 
-@admin.register(Periodicity)
-class PeriodicityAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'vars')
-
 @admin.register(Mailing)
 class MailingAdmin(admin.ModelAdmin):
     list_display = ('pk', 'data_mailing',)
+
 
 @admin.register(Message)
 class MessageAdmin(admin.ModelAdmin):

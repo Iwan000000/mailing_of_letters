@@ -1,5 +1,6 @@
 from django.urls import path
 from django.views.generic import TemplateView
+
 from users.views import UserUpdateView, RegisterView, EmailVerify, LoginView, LogoutView, forgot_password, \
     user_profile, moderator_users, user_change_active
 

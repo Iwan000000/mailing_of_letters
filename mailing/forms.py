@@ -1,4 +1,5 @@
 from django import forms
+
 from mailing.models import Mailing
 
 
@@ -10,7 +11,6 @@ class MailingForm(forms.ModelForm):
     class Meta:
         model = Mailing
         exclude = ('user', 'status',)
-        #widgets = {'data_mailing': forms.DateTimeInput(attrs={'type': 'date'})}
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

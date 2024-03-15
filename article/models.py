@@ -1,6 +1,7 @@
+import datetime
+
 from django.db import models
 from pytils.translit import slugify
-import datetime
 
 NULLABLE = {'blank': True, 'null': True}
 
@@ -19,7 +20,6 @@ class Article(models.Model):
         return f'{self.title}'
 
     def save(self, *args, **kwargs):
-
         if not self.slug:
             self.slug = slugify(self.title)
         now = datetime.datetime.now()

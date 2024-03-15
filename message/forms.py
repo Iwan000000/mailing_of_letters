@@ -1,9 +1,9 @@
 from django import forms
+
 from message.models import Message
 
 
 class MessageFrom(forms.ModelForm):
-
     class Meta:
         model = Message
         fields = '__all__'

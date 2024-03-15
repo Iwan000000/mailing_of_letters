@@ -1,12 +1,11 @@
-from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db import models
 
-NULLABLE = {'blank': True, 'null': True }
+NULLABLE = {'blank': True, 'null': True}
 
 
 # Create your models here.
 class User(AbstractUser):
-
     username = None
     email = models.EmailField(unique=True, verbose_name='электронная почта')
     name = models.CharField(max_length=50, verbose_name='Имя', **NULLABLE)
